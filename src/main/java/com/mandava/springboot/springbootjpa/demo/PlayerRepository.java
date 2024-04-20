@@ -11,5 +11,22 @@ import jakarta.transaction.Transactional;
 public class PlayerRepository {
 	@PersistenceContext
 	EntityManager entityManager;
+	
+	public Player insertPlayer(Player p) {
+		return entityManager.merge(p);
+	}
+
+	public Player updatePlayer(Player p) {
+		return entityManager.merge(p);
+	}
+	
+	public Player getPlayerById(int id) {
+		return entityManager.find(Player.class, id);
+	}
+	
+	public void deletePlayerById(int id) {
+		Player p = entityManager.find(Player.class, id);
+		entityManager.remove(p);
+	}
 
 }
